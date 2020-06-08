@@ -22,4 +22,13 @@ class Board {
         }
         return spaces;
     }
+    drawHTMLBoard() {
+        for (let column of this.spaces) {
+            for (let space of column) {
+                //call the newly created drawSVGSpace() method on each space object
+                space.drawSVGSpace();
+            }
+
+        }
+    }
 }
