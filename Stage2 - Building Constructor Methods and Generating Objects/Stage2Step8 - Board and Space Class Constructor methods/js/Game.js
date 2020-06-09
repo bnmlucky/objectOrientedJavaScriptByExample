@@ -5,6 +5,13 @@ class Game {
         this.ready = false;
     }
     /**
+     * Returns active player.
+     * @return {Object} player - The active player.
+     */
+    get activePlayer() {
+        return this.players.find(player => player.active);
+    }
+    /**
      * Creates two player objects
      * @return {Array} An array of two Player objects.
      */
@@ -14,8 +21,30 @@ class Game {
         return players;
     }
     // Gets game ready for play
-
+    /**
+     * Begins game.
+     */
     startGame() {
-
+        this.board.drawHTMLBoard();
+        this.activePlayer.activeToken.drawHTMLToken();
+        this.ready = true;
     }
+    /**
+     * Branches code, depending on what key player presses
+     * @param {Object} e - Keydown event object
+     */
+    handleKeydown(e) {
+        // test if the game is ready
+        if (this.ready) {
+            if (e.key === "ArrowLeft") {
+                this.activePlayer.activeToken.moveLeft();
+            } else if (e.key === "ArrowRight") {
+                this.activePlayer.activeToken.moveRight(this.board.columns);
+            } else if (e.key === "ArrowDown") {
+                // play token
+            }
+        }
+        // test for ArrowLeft, ArrowRight and ArrowDown
+    }
+
 }
